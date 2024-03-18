@@ -1,17 +1,20 @@
 # doomtown-automaton
-An interactive web-based helper written in [Twine 2](https://twinery.org/cookbook/) and formatted in [Snowman](https://github.com/videlais/snowman).  
-
-The helper can be accessed [here](https://bit.ly/dt-automaton) to play solo now. It is formatted for mobile devices.
-
-The helper was written to:
+An interactive web-based helper created to:
 * "Automate" the Automaton for Doomtown the Card Game
 * Ease the first-time uses of playing against the Automaton
-* Facilitate the creation of additional, and possibly more complicated and archetype-specific Automatons.
+* Facilitate the creation of additional, and possibly more complicated and archetype-specific Automatons
 * Act as a catalyst for creation of automatons for other games
 
-It is compatible with the following versions of Doomtown:
+The helper was written in [Twine 2](https://twinery.org/cookbook/) and formatted for [Snowman](https://github.com/videlais/snowman).  
+
+
+## Access
+The helper can be accessed via browser [here](https://bit.ly/dt-automaton) to play Doomtown solo. 
+
+It is formatted for mobile devices and is compatible with the following versions of Doomtown:
 * Doomtown Reloaded
 * Doomtown Wild West Edition
+
 
 ## Contributions
 If you would like to contribute to this project and make the helper better:

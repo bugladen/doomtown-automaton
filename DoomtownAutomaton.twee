@@ -1,0 +1,1673 @@
+:: StoryTitle
+Doomtown Automaton
+
+
+:: StoryData
+{
+  "ifid": "AA7F40E1-2CFD-4CE6-993D-ABAF02B349D3",
+  "format": "Snowman",
+  "format-version": "2.0.2",
+  "start": "Start",
+  "zoom": 0.6
+}
+
+
+:: Automaton Decisions {"position":"575,225","size":"100,100"}
+<%
+   s.Page =  s.constants.AUTOMATON_DECISIONS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Automaton Decisions
+
+<span.small>(This is part of the overall Automaton rules from the Automaton Variant in the rule book)</span>
+
+When a decision needs to be made on the Automaton's behalf, there will often be a list of priorties to base it on.  In those cases, apply them going from first to last. If there are still several options eligible, after applying all criteria, choose:
+
+<ol>
+<li>The card with the highest value</li>
+<li>The card that comes first alphabetically</li>
+</ol>
+
+Other factors to generally consider:
+<table>
+<tr>
+	<td>Influence</td>
+    <td>When priorities refer to influence, always look at the influence a card will have during Sundown.</td>
+</tr>
+
+<tr>
+	<td>Targets</td>
+    <td>When a target is needed for a play, refer to the Archetype.</td>
+</tr>
+
+<tr>
+	<td>Movin'</td>
+    <td>The Automaton will not perform a move that would put it in check (i.e. losing the game).</td>
+</tr>
+
+<tr>
+	<td>Choosing Effects</td>
+    <td>If an ability cannot be used in a way that would alter the game state, it will not be used. If several effects can be applied by the same ability, refer to Effect Priorities.</td>    
+</tr>
+
+<tr>
+	<td>Playing Cards Not in Hand</td>
+    <td>If there are several playable cards in the pile, select the one with the fewest cards of that suit and value in play, then, if there are still multiple options, the one closest to the top.</td>
+</tr>
+</table>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Automaton Decisions - Include {"position":"575,350","size":"100,100"}
+<li><span.grey>The card with the highest value</span></li>
+<li><span.grey>The card that comes first alphabetically</span></li>
+
+
+:: Contributors {"position":"150,150","size":"100,100"}
+<a href="javascript: window.history.back();"><<</a>
+
+## Contributors to this project:
+
+Edward Mittelstedt
+
+
+:: Footer Block {"position":"400,150","size":"100,100"}
+<table>
+<tr>
+<td>
+	<% if( s.Page != s.constants.PROGRAMMED_REFLEXES) { %>
+    	<% if( s.Archetype == s.constants.GUNFIGHTER) { %>
+			[[Programmed Reflexes->Gunfighter - Programmed Reflexes]] 
+		<% } %>
+	<% 	} else { %><b>Programmed Reflexes</b> <% } %>
+</td>
+
+<td>
+	<% if( s.Page != s.constants.EFFECT_PRIORITIES) { %>
+		<% if( s.Archetype == s.constants.GUNFIGHTER) { %>
+			[[Ability Effect Priorities->Gunfighter - Effect Priorities]]  
+		<% } %>
+	<% 	} else { %><b>Ability Effect Priorities</b><% } %>
+</td>
+
+<td>
+	<% if( s.Page != s.constants.TARGET_PRIORITIES) { %>
+		<% if( s.Archetype == s.constants.GUNFIGHTER) { %>
+			[[Target Priorities->Gunfighter - Target Priorities]]  
+		<% } %>
+	<% 	} else { %><b>Target Priorities</b><% } %>
+</td>
+
+</tr>
+
+<!-- Automaton Overview Sections -->
+<tr>
+<td>
+	<% if( s.Page != s.constants.AUTOMATON_DECISIONS) { %>
+			[[Automaton Decisions]]  
+	<% 	} else { %><b>Automaton Decisions</b><% } %>
+</td>
+
+<td>
+	<% if( s.Page != s.constants.NON_UNIQUE_CARDS) { %>
+			[[Non-Unique Cards]]  
+	<% 	} else { %><b>Non-Unique Cards</b><% } %>
+</td>
+
+<td>
+	<% if( s.Page != s.constants.SHOOTOUT_HANDS) { %>
+			[[Shootout Hands<-Shooters and Shootout Hands]]  
+	<% 	} else { %><b>Shooters and Shootout Hands</b><% } %>
+</td>
+
+</tr>
+
+</table>
+<span.small>Archetype: <%= s.Archetype %></span>
+
+
+
+:: Gamblin' Phase {"position":"900,25","size":"100,100"}
+<%
+  s.Phase = s.constants.GAMBLIN;
+  s.Page = s.constants.GAMBLIN;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <%= s.Phase %> Phase
+
+Make a 5-card draw hand for Lowball.  
+
+On Resolution, make a <span.large>[[PULL->Pull]]</span> for every Cheatin' opponent that hasn't had a Cheatin' Resolution played against them, proceeding clockwise from the Automaton's position.
+
+When done, proceed to the [[Noon Phase]].
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter {"position":"75,300","size":"100,100"}
+<%
+  s.Archetype = s.constants.GUNFIGHTER;
+  s.Page = '';
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Gunfighter Archetype
+
+This is the first and only official Automaton archtype released by Pine Box Entertainment.  
+
+This archetype was designed to get the Automaton into your face.  Dudes will aggressively try to control your Deeds and will chase your Dudes down to issue Call-Outs.
+
+Here are some [[Gunfighter Archetype Deck Lists->Gunfighter Deck Lists]] you can use to build your Automaton.
+
+Here are some [[Official Starter Decks->Official Starter Decks]] you can use as building blocks to play against this Automaton.
+
+When ready, proceed to the [[Gamblin' Phase]].
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Bonuses affecting OPPOSING Dudes {"position":"175,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Bonuses affecting opposing dudes
+
+When choosing an Opposing Dude as a target for a bonus, choose In order:
+
+<ol>
+<li>Dude with highest bullets.</li>
+<li>Greatest increase in Dudes with stud bullets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Bonuses affecting OWN dudes {"position":"50,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Bonuses affecting own dudes
+
+When choosing Own Dude as a target for a bonus, choose In order:
+<ol>
+<li>Greatest increase in Dudes with stud bullets</li>
+<li>Dude with highest bullets.</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Bounties {"position":"300,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Bounties
+
+When placing Bounties on Opposing Dudes, choose In Order:
+<ol>
+<li>Dude with lowest bounty</li>
+<li>Dude with highest influence</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Clubs Step 1 {"position":"1650,800","size":"100,100"}
+<%
+   s.Page =  s.constants.CLUBS;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## &clubs;  Clubs Pulled
+### Step 1
+
+Call out a Dude. 
+
+Can't Call Out a Dude? Then move a Dude to an opposing Dude who can be called out.  This must be done WITHOUT BOOTING - if the move requires booting, then the movement can't happen.
+
+If Moving, use the following criteria to choose which Automata Dude to move:
+
+<ol>
+<li>Stud Dude</li>
+<li>Dude with the highest bullets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+If Moving, use the following criteria to choose target Dude to move to:
+
+<ol>
+<li>Dude with highest control points</li>
+<li>Dude with highest influence</li>
+<li>Dude with most attachments</li>
+<li>Dude with the highest cost</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+If Calling Out, use [[Target Priorities->Gunfighter - Target Priorities]] to select opposing mark and to select a leader. 
+
+<% if (s.jokerPulled != null) { %>
+[[Joker Rampage! - Proceed to Step 2->Gunfighter - Clubs Step 2]]
+<% } else { %>
+Did this result in a Dude being called out or moving? 
+<ul>
+<li>[[Yes, a Dude moved - Go back to Noon Phase->Noon Phase]]</li>
+<li>[[Yes, this started a Shootout - Go to Shooutout Phase->Shootout Phase]]</li>
+<li>[[No, now try Spades Step 1->Gunfighter - Clubs Try Spades Step 1]]</li>
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Clubs Step 2 {"position":"1450,900","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.CLUBS
+%>
+
+<%= window.story.render('Gunfighter - Step 2') %>
+
+
+:: Gunfighter - Clubs Try Spades Step 1 {"position":"1750,800","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.CLUBS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## &spades; Spades, Step 1
+### (&clubs; Clubs Actually Pulled)
+
+<%= window.story.render('Gunfighter - Spades Step 1') %>
+
+
+
+
+:: Gunfighter - Diamonds Step 1 {"position":"1400,800","size":"100,100"}
+<%
+   s.Page =  s.constants.DIAMONDS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <span.red>&diams;</span> Diamonds Pulled
+### Step 1
+
+Move a Dude to a Deed OWNED by the Automaton.
+
+If no Deeds are currently owned by the Automaton currently, move to the next step. 
+
+If a Dude can't be moved:
+<ul>
+<li>Without booting a dude per normal movement rules</li>
+<li>Without a loss of control points</li>
+<li>Without moving the last unbooted Dude in the town square</li>
+</ul>
+Move to the next step. 
+
+If a Dude can be moved using using above restrictions, use the following criteria to choose <i>which</i> Dude to move:
+<ol>
+<li>Skilled Dude</li>
+<li>Dude with highest influence</li>
+<li>Stud Dude</li>
+<li>Dude with highest bullets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+Move this Dude to a Deed owned by the Automaton.  Use the following criteria to choose the Deed:
+<ol>
+<li>Deed not controlled by Automaton</li>
+<li>Deed with ability (printed or attached) affecting Dudes at that Deed</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<% if (s.jokerPulled != null) { %>
+[[Joker Rampage! - Proceed to Step 2->Gunfighter - Diamonds Step 2]]
+<% } else { %>
+Did a Dude move to a Deed owned by the Automata? 
+<ul>
+<li>[[Yes, back to Noon Phase->Noon Phase]]</li>
+<li>[[No, now try Spades Step 1->Gunfighter - Diamonds Try Spades Step 1]]</li>
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Diamonds Step 2 {"position":"1700,900","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.DIAMONDS
+%>
+
+<%= window.story.render('Gunfighter - Step 2') %>
+
+
+:: Gunfighter - Diamonds Try Spades Step 1 {"position":"1500,800","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.DIAMONDS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## &spades; Spades, Step 1
+### (<span.red>&diams;</span> Diamonds Actually Pulled)
+
+<%= window.story.render('Gunfighter - Spades Step 1') %>
+
+
+
+
+:: Gunfighter - Effect Priorities {"position":"700,625","size":"100,100"}
+<%
+   s.Page = s.constants.EFFECT_PRIORITIES;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Gunfighter Ability Effect Priorities
+
+If an Ability can change the condition of other cards in several ways, choose the effect in order:
+<ol>
+<li>Choose penalties to OPPOSING cards over bonuses to OWN cards.</li>
+<li>Choose cards leaving play or entering play.</li>
+<li>Choose to boot or unboot cards (choosing the option that affects the most cards if applicable).</li>
+<li>Choose altering stud or draw status.</li>
+<li>Choose increasing or decreasing bullets.</li>
+<li>Choose other effects.</li>
+</ol>
+
+<div.small>
+OWN means cards that the Automaton owns.   
+<br>OPPOSING means cards that human players own
+</div>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Goods and Spells {"position":"675,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Goods and Spells (Receiving)
+
+When choosing a Target for Good and Spells use the following order:
+
+<ol>
+<li>Card without an attachment of that type</li>
+<li>Card that gets a special bonus from that type of card</li>
+<li>Card that has greatest increase in overall stud bullets</li>
+<li>Influence gain on a dude that has none</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Hearts Step 1 {"position":"1150,800","size":"100,100"}
+<%
+   s.Page =  s.constants.HEARTS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <span.red>&hearts;</span> Hearts Pulled
+### Step 1
+
+Move a Dude to a deed NOT OWNED by the Automaton.
+
+Move a dude:
+<ul>
+<li>At Town Square</li>
+<li>At home</li>
+</ul>
+
+Use the following criteria to choose the Dude, in order:
+<ol>
+<li>Has influence at Sundown</li>
+<li>Is a Stud</li>
+<li>Has Highest bullets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+Move the Dude to a deed NOT owned by the Automaton.  Use the following criteria for choosing the deed, in order:
+<ol>
+<li>Highest control points</li>
+<li>Highest production</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+Boot the Dude as normal if the move requires it.
+
+<% if (s.jokerPulled != null) { %>
+[[Joker Rampage! - Proceed to Step 2->Gunfighter - Hearts Step 2]]
+<% } else { %>
+Did this result in a Dude moving? 
+<ul>
+<li>[[Yes, back to Noon Phase->Noon Phase]]</li>
+<li>[[No, now try Spades Step 1->Gunfighter - Hearts Try Spades Step 1]]</li>
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Hearts Step 2 {"position":"1200,900","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.HEARTS
+%>
+
+<%= window.story.render('Gunfighter - Step 2') %>
+
+
+:: Gunfighter - Hearts Try Spades Step 1 {"position":"1250,800","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.HEARTS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## &spades;, Spades Step 1
+### (<span.red>&hearts;</span> Hearts Actually Pulled)
+
+<%= window.story.render('Gunfighter - Spades Step 1') %>
+
+
+
+
+:: Gunfighter - Joker Pulled {"position":"1175,625","size":"100,100"}
+<%
+   s.Page =  s.constants.JOKER;
+   s.jokerPulled = true;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Joker Pulled
+
+The Joker shakes up the town!  You will perform <i>every</i> action of <b>each</b> suit below, in order. 
+<ol>
+<li><span.large.red>&hearts;</span> Hearts</li>
+<li><span.large>&spades;</span> Spades</li>
+<li><span.large.red>&diams;</span> Diamonds</li>
+<li><span.large>&clubs;</span> Clubs</li>
+</ol>
+
+Note: If during a Shootout occurs during any of these actions, the Joker stops it's rampage.
+
+When done, Ace the Joker.
+
+Start the Rampage!  
+<% if (s.Phase == s.constants.NOON) { %>
+Proceed to <span.large.red>&hearts;</span> [[Hearts->Gunfighter - Hearts Step 1]]
+<% } else { %>
+Proceed to <span.large.red>&hearts;</span> [[Hearts->Gunfighter - Hearts Step 2]]
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+:: Gunfighter - OPPOSING Attachments, Booted/Discarded as a Cost or by Effect {"position":"175,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Opposing Attachments
+
+When choosing Opposing Attachments, Booted or Discarded as a Cost or by Effect, use the following order:
+
+<ol>
+<li>Gadgets</li>
+<li>Spells</li>
+<li>Non-Gadget Goods</li>
+<li>Lowest Cost</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - OPPOSING Dude Leaving Play or Control {"position":"550,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Opposing Dude Leaving Play or Control
+
+If an Opposing Dude leaves play or Opponent loses control of them, choose in order:
+
+<ol>
+<li>Choose Dude with the Highest Control Points</li>
+<li>Choose Dude with the Highest Influence</li>
+<li>Choose Dude who is a Stud</li>
+<li>Choose Dude who has the highest combined cost of Dude and Attachments</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - OPPOSING Mark {"position":"300,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Opposing Mark
+
+When choosing Opposing Mark, use the following order:
+
+<ol>
+<li>Highest control points</li>
+<li>Highest influence</li>
+<li>Most attachments</li>
+<li>Highest cost</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+ 
+ <%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - OWN Attachments, Booted/Discarded as a Cost or by Effect {"position":"50,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities -  Own Attachments
+
+When choosing Automaton's OWN Attachments, Booted or Discarded as a Cost or by Effect, use the following order:
+
+<ol>
+<li>Lowest Cost</li>
+<li>Non-Gadget Goods</li>
+<li>Spells</li>
+<li>Gadgets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - OWN Dude Leaving Play or Control {"position":"425,825","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Own Dude Leaving Play or Control
+
+If a Dude the Automaton owns leaves play or it loses control of them, choose the following in order:
+
+<ol>
+<li>Choose Dude with Lowest Influence</li>
+<li>Choose a Dude who is a Draw Dude after shootout ends</li>
+<li>Choose the lowest cost of Dude and Attachments combined</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Penalties, affecting OPPOSING Dudes {"position":"425,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Penalties affecting Opposing Dudes
+
+When choosing an Opposing Dude for a penalty, use the following order:
+
+<ol>
+<li>Prevent the use of abilities for a Dude</li>
+<li>Stud Dude</li>
+<li>Dude with influence</li>
+<li>Dude with highest bullet rating</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Penalties, affecting OWN Dudes {"position":"550,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Penalties affecting Own Dudes
+
+When choosing Own Dude for a penalty, use the following order:
+
+<ol>
+<li>Dude with highest bullet rating</li>
+<li>Dude with influence</li>
+<li>Stud Dude</li
+<li>Prevent the use of abilities for a Dude</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Posses {"position":"800,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Forming Posses
+
+When choosing a target for forming Posses as a leader, and choosing Dudes to join a posse, use the following criteria in order:
+
+<ol>
+<li>Dudes without abilities that let them join later</li>
+<li>Dudes that can join without booting</li>
+<li>Stud</li>
+<li>Dude with highest bullet rating</li>
+<li>Dude with Shootout or Resolution abilities (printed or attached) that can be used after joining</li>
+<li>Dude with lowest influence</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Programmed Reflexes {"position":"100,625","size":"100,100"}
+<%
+   s.Page = s.constants.PROGRAMMED_REFLEXES;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Gunfighter Programmed Reflexes
+<table>
+
+<tr>
+	<td>Assigning Casualties</td>
+    <td>
+      Except for Harrowed dudes, always assign as many casualties to a dude as possible. 
+
+      Assign them in the following order: 
+      <ol>
+      <li>Harrowed dudes (as 1 casualty)</li>
+      <li>Token dudes</li>
+      <li>Sidekicks</li>
+      <li>Dudes</li>
+      </ol>
+
+      Use [[Target Priorities->Gunfighter - Target Priorities]] if there are several options in a category
+	</td>
+</tr>
+
+<tr>
+	<td>Bonuses and Penalties</td>
+    <td>
+		If these can be applied to any dude, apply bonuses to Automaton dudes and penalties to player dudes first.
+	</td>
+</tr>
+
+<tr>
+	<td>Building Deeds</td>    
+    <td>
+		Alternate between building on the left and right side of their street, starting on the left.
+	</td>
+</tr>
+<tr>
+	<td>Call-Outs</td>    
+    <td>
+		Always Accept them.
+	</td>
+</tr>
+
+<tr>
+	<td>Discards</td>    
+    <td>
+		 Always discard cards starting from the right when discarding. It always discards as many cards as possible during Nightfall.
+	</td>
+</tr>
+
+<tr>
+	<td>Fleeing</td>    
+    <td>
+		 Never flees from shootouts.
+	</td>
+</tr>
+
+<tr>
+	<td>Jobs</td>    
+    <td>
+		 Always oppose them if possible.
+	</td>
+</tr>
+
+<tr>
+	<td>Paying</td>    
+    <td>
+		 Always pays ghost rock required by abilities if possible.
+	</td>
+</tr>
+
+<tr>
+	<td>Posse Formation</td>    
+    <td>
+		 Always attempt to bring two extra dudes to a shootout or a job that can be opposed, besides the leader, mark, or the dude opposing a job.
+	</td>
+</tr>
+
+<tr>
+	<td>Reacts</td>    
+    <td>
+		 Always use them when possible.
+	</td>
+</tr>
+
+<tr>
+	<td>Upkeep</td>    
+    <td>
+		 If unable to pay upkeep for all dudes, start by paying for the dude with the highest combined cost of dude and attachments.
+	</td>
+</tr>
+
+</table>
+
+&nbsp;
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Pull Step 3 {"position":"950,925","size":"100,100"}
+<%
+   s.Page =  s.constants.PULL_STEP_3
+
+	let suit = '';
+%>
+
+<%= window.story.render('Phase Block') %>
+
+<% 
+	switch (s.actualPull)
+    {
+    	case s.constants.HEARTS:
+	  		suit = '<span.red>&hearts;</span> Hearts';
+            break;
+        
+    	case s.constants.DIAMONDS:
+	  		suit = '<span.red>&diams;</span> Diamonds';
+            break;
+
+		case s.constants.CLUBS:
+	  		suit = '&clubs; Clubs';
+            break;
+
+		case s.constants.SPADES:
+	  		suit = '&spades; Spades';
+            break;
+    }
+%>
+
+## <%= suit %> Pulled
+### Step 3
+
+#### Use An Ability
+<% if (s.jokerPulled == null) { %>
+If no card was played, use an ability on a card. 
+<% } %>
+
+<%
+	let phase = s.Phase;
+    if (s.Phase == s.constants.GAMBLIN || s.Phase == s.constants.SHOOTOUT_RESOLUTION) 
+    	phase = 'Resolution';
+%>
+
+To choose a card start with <%= suit %>, then proceed through the following list until you find a card with a <b><%= phase %></b> ability (wrap around to the start if needed):
+
+&clubs; - <span.red>&diams;</span> - &spades; - <span.red>&hearts;</span> - Outfit - Legend.
+
+If several cards of the same type have an applicable ability, the rules listed under [[Effect Priorities->Gunfighter - Effect Priorities]]. 
+
+If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on the pull.
+
+<% if (s.jokerPulled != null) { %>
+[[Joker Rampage! - Proceed to Step 4->Gunfighter - Pull Step 4]]
+<% } else { %>
+Was an ability on a card used this way?
+<ul>
+<% returnPrompt = 'Yes, back to '; %>
+<%= window.story.render('Return to Phase Block') %>
+<li>[[No, proceed to Step 4->Gunfighter - Pull Step 4]]</li>
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+
+:: Gunfighter - Pull Step 4 {"position":"950,1050","size":"100,100"}
+<%
+   s.Page =  s.constants.PULL_STEP_4
+
+	let suit = '';
+%>
+
+<%= window.story.render('Phase Block') %>
+
+<% 
+	switch (s.actualPull)
+    {
+    	case s.constants.HEARTS:
+	  		suit = '<span.red>&hearts;</span> Hearts';
+            break;
+        
+    	case s.constants.DIAMONDS:
+	  		suit = '<span.red>&diams;</span> Diamonds';
+            break;
+
+		case s.constants.CLUBS:
+	  		suit = '&clubs; Clubs';
+            break;
+
+		case s.constants.SPADES:
+	  		suit = '&spades; Spades';
+            break;
+    }
+%>
+
+## <%= suit %> Pulled
+### Step 4
+
+#### Recompense
+
+ If no cards were played and no ability used, the Automaton gains 1 ghost rock.
+ 
+<% if (s.jokerPulled != null) { %>
+	<% if (s.actualPull == s.constants.HEARTS) { %>
+
+		<% if (s.Phase == s.constants.NOON) { %>
+        Joker Rampage! Proceed to <span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 1]]
+        <% } else { %>
+        Joker Rampage! Proceed to <span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 2]]
+        <% } %>
+        
+	<% } %>
+
+	<% if (s.actualPull == s.constants.SPADES) { %>
+
+		<% if (s.Phase == s.constants.NOON) { %>
+        Joker Rampage! Proceed to <span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 1]]
+        <% } else { %>
+        Joker Rampage! Proceed to <span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 2]]
+        <% } %>
+
+	<% } %>
+    
+	<% if (s.actualPull == s.constants.DIAMONDS) { %>
+
+		<% if (s.Phase == s.constants.NOON) { %>
+        Joker Rampage! Proceed to <span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 1]]
+        <% } else { %>
+        Joker Rampage! Proceed to <span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 2]]
+        <% } %>
+        
+	<% } %>
+
+	<% if (s.actualPull == s.constants.CLUBS) { %>
+    End of Joker Rampage! 
+    <b>Ace the Joker card.</b>
+    
+    <% returnPrompt = 'Return to the'; %>
+    <%= window.story.render('Return to Phase Block') %>
+	<% } %>
+    
+    <% s.actualPull = null %>
+
+<% } else { %>
+
+<% returnPrompt = 'Return to the'; %>
+<%= window.story.render('Return to Phase Block') %>
+
+<% } %>
+
+&nbsp;
+
+<%= window.story.render('Footer Block') %>
+
+
+:: Gunfighter - Pulls, Making {"position":"675,1000","size":"100,100"}
+<%
+   s.Page = ''
+%>
+
+<%= window.story.render('Phase Block') %>
+
+### Target Priorities - Making Pulls
+
+When choosing a target for a Pull, use the following criteria in order:
+
+<ol>
+<li>Dude that gets a special effect related to the pull</li>
+<li>Dude with highest skill (or value for Kung Fu)</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Spades Step 1 {"position":"850,625","size":"100,100"}
+<%
+   s.Page =  s.constants.SPADES
+%>
+
+<% if (s.actualPull == null) { %>
+<%= window.story.render('Phase Block') %>
+
+## &spades; Spades Pulled
+### Step 1
+<% } %>
+
+Move a dude not at an opposing deed (but can be at own Deed) to the Town Square.
+
+Use the following criteria to choose the Dude:
+<ol>
+<li>Dude at own home</li>
+<li>Dude at opposing home</li>
+<li>Stud</li>
+<li>Has Influence</li>
+<li>Highest bullets</li>
+<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+Note: Do not move a Dude if moving would cause the Automaton to lose at Sunset.
+<span.small>See [[Automaton Decisions<-Automaton Decisions, Movin']]</span>
+
+<% if (s.jokerPulled != null) { %>
+<li>[[Joker Rampage! - Proceed to Step 2->Gunfighter - Spades Step 2]]</li>
+<% } else { %>
+Did this result in a Dude moving? 
+<ul>
+<% returnPrompt = 'Yes, back to '; %>
+<%= window.story.render('Return to Phase Block') %>
+<% if (s.actualPull != null) { %>
+<li>[[No, take me to Step 2->Gunfighter - Step 2]] </li>
+<% } else { %>
+<li>[[No, take me to Step 2->Gunfighter - Spades Step 2]] </li>
+<% } %>
+
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter - Spades Step 2 {"position":"950,625","size":"100,100"}
+<%
+   s.actualPull  =  s.constants.SPADES
+%>
+
+<%= window.story.render('Gunfighter - Step 2') %>
+
+
+:: Gunfighter - Step 2 {"position":"950,800","size":"100,100"}
+<%
+   s.Page =  s.constants.PULL_STEP_2;   
+   
+   let suit = '';
+%>
+
+<%= window.story.render('Phase Block') %>
+
+<% 
+	switch (s.actualPull)
+    {
+    	case s.constants.HEARTS:
+	  		suit = '<span.red>&hearts;</span> Hearts';
+            break;
+        
+    	case s.constants.DIAMONDS:
+	  		suit = '<span.red>&diams;</span> Diamonds';
+            break;
+
+		case s.constants.CLUBS:
+	  		suit = '&clubs; Clubs';
+            break;
+
+		case s.constants.SPADES:
+	  		suit = '&spades; Spades';
+            break;
+    }
+%>
+
+## <%= suit %> Pulled
+### Step 2
+
+#### Play a Card
+
+<%
+	let phase = s.Phase;
+    if (s.Phase == s.constants.GAMBLIN) 
+    	phase = 'Cheatin\' Resolution';
+        
+    if (s.Phase == s.constants.SHOOTOUT_RESOLUTION) 
+    	phase = 'Resolution';
+%>
+
+If the Automaton has one or more playable <%= suit %> <b><%= phase %></b> cards in-hand, play one. 
+
+Select a card with fewest <%= suit %> and value in play, then, if there are several options, the right-most one.
+
+<% if (s.jokerPulled != null) { %>
+[[Joker Rampage! - Proceed to Step 3->Gunfighter - Pull Step 3]]
+<% } else { %>
+Was a card played this way?
+<ul>
+<% returnPrompt = 'Yes, back to '; %>
+<%= window.story.render('Return to Phase Block') %>
+<li>[[No, proceed to Step 3->Gunfighter - Pull Step 3]]</li>
+</ul>
+<% } %>
+
+<%= window.story.render('Footer Block') %>
+
+
+:: Gunfighter - Target Priorities {"position":"375,625","size":"100,100"}
+<%
+   s.Page = s.constants.TARGET_PRIORITIES
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Gunfighter Target Priorities 
+(After applying the [[Gunfighter - Effect Priorities<-Effect Priorities]], when applicable.)
+
+<div.small>
+OWN means cards that the Automaton owns.   
+<br>OPPOSING means cards that human players own
+</div>
+
+<table>
+<tr>
+<td>Attachments
+<br>Booted/Discarded as a Cost or by Effect
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - OPPOSING Attachments, Booted/Discarded as a Cost or by Effect<-OPPOSING]]</li>
+<li>[[Gunfighter - OWN Attachments, Booted/Discarded as a Cost or by Effect<-OWN]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>Bonuses</td>
+<td>
+<ul>
+<li>[[Gunfighter - Bonuses affecting OPPOSING Dudes<-Affecting OPPOSING Dudes]]</li>
+<li>[[Gunfighter - Bonuses affecting OWN dudes<-Affecting OWN dudes]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+Bounties
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - Bounties<-All]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>Dudes</td>
+<td>
+<ul>
+<li>[[Gunfighter - OWN Dude Leaving Play or Control<-OWN, Leaving Play or Control]]</li>
+<li>[[Gunfighter - OPPOSING Dude Leaving Play or Control<-OPPOSING, Leaving Play or Control]]</li>
+</ul>
+</tr>
+
+<tr>
+<td>
+Goods and Spells
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - Goods and Spells<-Receiving]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+Mark
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - OPPOSING Mark<-OPPOSING]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>Penalties</td>
+<td>
+<ul>
+<li>[[Gunfighter - Penalties, affecting OPPOSING Dudes<-Affecting OPPOSING Dudes]]</li>
+<li>[[Gunfighter - Penalties, affecting OWN Dudes<-Affecting OWN Dudes]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+Posses
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - Posses<-Forming]]</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+Pulls
+</td>
+<td>
+<ul>
+<li>[[Gunfighter - Pulls, Making<-Making]]</li>
+</ul>
+</td>
+</tr>
+
+</table>
+
+<br>&nbsp;
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Gunfighter Deck Lists {"position":"75,400","size":"100,100"}
+<%= window.story.render('Phase Block') %>
+
+## Gunfighter Archetype Deck Lists
+
+<table>
+<tr>
+<td>Official Pine Box Entertainment Lists</td>
+<td>
+
+<a href="https://dtdb.co/en/decklist/3450/anarchists-weird-west-edition-gunfighter-automaton-deck">Anarchists</a>
+
+<a href="https://dtdb.co/en/decklist/3449/entrepreneurs-weird-west-edition-gunfighter-automaton-deck">Entrepreneurs</a>
+
+<a href="https://dtdb.co/en/decklist/3452/fearmongers-weird-west-edition-gunfighter-automaton-deck">Fearmongers</a>
+
+<a href="https://dtdb.co/en/decklist/3451/first-peoples-weird-west-edition-gunfighter-automaton-deck">First Peoples</a>
+
+<a href = "https://dtdb.co/en/decklist/3447/law-dogs-weird-west-edition-gunfighter-automaton-deck">Law Dogs</a>
+
+<a href="https://dtdb.co/en/decklist/3448/outlaws-weird-west-edition-gunfighter-automaton-deck">Outlaws</a>
+
+</td>
+</tr>
+</table>
+
+&nbsp;
+
+<%= window.story.render('Footer Block') %>
+
+
+:: Non-Unique Cards {"position":"700,225","size":"100,100"}
+<%
+   s.Page =  s.constants.NON_UNIQUE_CARDS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Non-Unique Cards
+
+<span.small>(This is part of the overall Automaton rules from the Automaton Variant in the rule book)</span>
+
+If there are multiple copies of the same card in play that are eligible targets, choose based on the following criteria. If there is no difference, just choose one (e.g. multiple unbooted Pagliaccios in a shootout).
+
+<table>
+
+<tr>
+	<td>Deeds</td>
+    <td>
+        <ol>
+            <li>The one with no dudes present</li>
+            <li>The one closest to the home on its street</li>
+            <li>The leftmost one</li>
+            <%= window.story.render('Automaton Decisions - Include') %>
+        </ol>
+     </td>
+</tr>
+
+<tr>     
+     <td>Dudes:</td>
+     <td>
+     	<ol>
+        	<li>The one with the most attachments</li>
+            <li>An unbooted dude</li>
+			<%= window.story.render('Automaton Decisions - Include') %>
+        </ol>
+	</td>     
+</tr>    
+
+<tr>
+	<td>Goods/Spells</td>
+    <td>
+    	<ol>
+        	<li>The one attached to the dude/location with the most attached cards</li>
+            <li>Make the choice as if choosing a dude/spell for the relevant play</li>
+			<%= window.story.render('Automaton Decisions - Include') %>
+		</ol>
+	</td>
+</tr>    
+
+</table>
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Noon Phase {"position":"1025,25","size":"100,100"}
+<%
+  s.Phase = s.constants.NOON;
+  s.Page = s.constants.NOON;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <%= s.Phase %> Phase
+
+Make a <span.large>[[PULL->Pull]]</span> every time it is the Automaton's turn to act. 
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Official Starter Decks {"position":"200,425","size":"100,100"}
+
+
+
+:: Phase Block {"position":"400,25","size":"100,100"}
+<table>
+<tr>
+<td>
+<a href="javascript: window.history.back();"><<</a>
+</td>
+<td class="phase-header">
+		<% if( s.Phase != s.constants.GAMBLIN) { %>[[Gamblin'->Gamblin' Phase]]
+		<% } else { %><b>Gamblin'</b><% } %>
+</td>        
+<td class="phase-header">
+		<% if( s.Phase != s.constants.NOON) { %>[[Noon->Noon Phase]]
+		<% } else { %><b>Noon</b><% } %>
+</td>
+<td class="phase-header">
+		<% if( s.Phase != s.constants.SHOOTOUT) { %> [[Shootout->Shootout Phase]]
+		<% } else { %><b>Shootout</b><% } %>
+</td>
+<td class="phase-header">
+		<% if( s.Phase != s.constants.SHOOTOUT_RESOLUTION) { %> [[Shootout Resolution]]
+		<% } else { %><b>Shootout Resolution</b><% } %>
+</td>
+</tr>
+
+</table>
+
+
+
+:: Pull {"position":"1075,200","size":"100,100"}
+<%
+   s.Page = s.constants.PULL;
+   
+   //Clear any previous pull flags
+   s.actualPull  =  null;
+   s.jokerPulled = null;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Make a Pull
+
+What did you pull?
+
+<table.transparent>
+<tr>
+<td.large.transparent>
+<% if (s.Phase == s.constants.NOON) { %>
+<span.large.red>&hearts;</span> [[Hearts->Gunfighter - Hearts Step 1]]
+<% } else { %>
+<span.large.red>&hearts;</span> [[Hearts->Gunfighter - Hearts Step 2]]
+<% } %>
+</td>
+
+<td.large.transparent>
+<% if (s.Phase == s.constants.NOON) { %>
+<span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 1]]
+<% } else { %>
+<span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 2]]
+<% } %>
+</td>
+
+</tr>
+<tr>
+
+<td.large.transparent>
+<% if (s.Phase == s.constants.NOON) { %>
+<span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 1]]
+<% } else { %>
+<span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 2]]
+<% } %>
+</td>
+
+<td.large.transparent>
+<% if (s.Phase == s.constants.NOON) { %>
+<span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 1]]
+<% } else { %>
+<span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 2]]
+<% } %>
+</td>
+
+</tr>
+<tr>
+<td.large.transparent colspan="2" class="transparent">
+&#x1F480; [[Joker->Gunfighter - Joker Pulled]]
+</td>
+</tr>
+</table>
+<br>
+<div.small>
+Add the pulled card to the left-most position on the Hand Row. 
+<% if (s.Phase == s.constants.NOON) { %>
+If a shootout starts during this process, switch to the [[Shootout Phase]].  <i>Do not</i> proceed further after it ends.
+<% } %>
+
+After the pull is resolved, discard cards from the right-side of the Hand Row until maximum hand size is reached.
+</div>  
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Return to Phase Block {"position":"1575,50","size":"100,100"}
+<% if (s.Phase == s.constants.GAMBLIN) {%>
+<li>[[<%=  returnPrompt %> Gamblin' Phase->Gamblin' Phase]]</li>
+<% } %>
+
+<% if (s.Phase == s.constants.NOON) {%>
+<li>[[<%=  returnPrompt %> Noon Phase->Noon Phase]]</li>
+<% } %>
+
+<% if (s.Phase == s.constants.SHOOTOUT) {%>
+<li>[[<%=  returnPrompt %> Shootout Phase->Shootout Phase]]</li>
+<% } %>
+
+<% if (s.Phase == s.constants.SHOOTOUT_RESOLUTION) {%>
+<li>[[<%=  returnPrompt %> Shootout Resolution ->Shootout Resolution]]</li>
+<% } %>
+
+
+
+:: Shootout Hands {"position":"825,225","size":"100,100"}
+<%
+   s.Page =  s.constants.SHOOTOUT_HANDS
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## Shootout Hands
+
+<span.small>(This is part of the overall Automaton rules from the Automaton Variant in the rule book)</span>
+
+To choose a shooter, pick a dude based on the following priorities:
+
+<ol>
+	<li>Higher than 1-Stud</li>
+    <li>Highest bullets</li>
+    <li>Unbooted dude</li>
+    <li>Lowest influence</li>
+	<%= window.story.render('Automaton Decisions - Include') %>
+</ol>
+
+Create a Shootout Hand for the Automaton in the following way. 
+
+<ul>
+	<li>Determine stud and draw totals as usual.</li>
+    <li>Draw a number of cards equal to five plus the stud value.</li>
+    <li>Reveal a number of cards from the AI deck equal to the draw value.</li>
+    <li>Make the hand with the highest possible rank by combining the cards drawn for stud value and up to one of the cards revealed due to the draw value.</li>
+</ul>
+    
+If there are several ways to make a hand of the highest rank, choose one that isn't cheating, if possible.
+
+If the same hand can be made with and without jokers, use the one without jokers.
+
+When done, proceed to [[Shootout Resolution]].
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Shootout Phase {"position":"1150,25","size":"100,100"}
+<%
+    s.Phase = s.constants.SHOOTOUT;
+    s.Page = s.constants.SHOOTOUT;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <%= s.Phase %> Phase
+
+After forming posses, make a <span.large>[[PULL->Pull]]</span> every time it is the Automaton's turn to make a <i>Shootout Play</i>.
+
+When done, [[Shootout Hands<-Choose Shooter and Make Shootout Hands]] 
+
+<%= window.story.render('Footer Block') %>
+
+
+
+:: Shootout Resolution {"position":"1275,25","size":"100,100"}
+<%
+  s.Phase = s.constants.SHOOTOUT_RESOLUTION;
+  s.Page = s.constants.SHOOTOUT_RESOLUTION;
+%>
+
+<%= window.story.render('Phase Block') %>
+
+## <%= s.Phase %> Phase
+
+During the Resolution Phase, make a <span.large>[[PULL->Pull]]</span> every time it is the Automaton's turn to act. 
+
+<%= window.story.render('Footer Block') %>
+
+
+:: Start {"position":"75,25","size":"100,100"}
+## Doomtown Automaton
+
+Welcome to the Doomtown Automaton helper.   It assists with the step-by-step flow of playing against a Doomtown Automaton. It is formatted to be used from a small-screen device.
+
+Please choose from the following available Archetypes:
+
+[[Gunfighter]]
+
+<span.small>[[Starter Decks]] | [[Contributors]]</span>
+
+
+:: Starter Decks {"position":"25,150","size":"100,100"}
+<a href="javascript: window.history.back();"><<</a>
+
+## Starter Decks
+
+Below are lists of starters decks you can make using only the Core Set of the respective edition.  Use these decks as building blocks to play against the Automaton.
+
+<table>
+<tr>
+<td>Weird West Edition</td>
+<td>
+<a href="https://dtdb.co/en/decklist/3410/anarchists-weird-west-edition-official-starter-deck-list">Anarchists</a>
+
+<a href="https://dtdb.co/en/decklist/3411/entrepreneurs-weird-west-edition-official-starter-deck">Entrepreneurs</a>
+
+<a href="https://dtdb.co/en/decklist/3408/fearmongers-weird-west-edition-official-starter-deck-list">Fearmongers</a>
+
+<a href="https://dtdb.co/en/decklist/3407/first-peoples-weird-west-edition-official-starter-deck-list">First Peoples</a>
+
+<a href="https://dtdb.co/en/decklist/3406/law-dogs-weird-west-edition-official-starter-deck-list">Law Dogs</a>
+
+<a href="https://dtdb.co/en/decklist/3409/outlaws-weird-west-edition-official-starter-deck-list">Outlaws</a>
+</td>
+</tr>
+
+<tr>
+<td>Reloaded</td>
+<td>
+<a href="https://dtdb.co/en/decklist/3018/the-fourth-ring-starting-deck-j-s-q-s-10-s-">The Fourth Ring</a>
+
+<a href="https://dtdb.co/en/decklist/454/starting-deck-the-law-dogs">Law Dogs</a>
+
+<a href="https://dtdb.co/en/decklist/453/starting-deck-the-morgan-cattle-company">The Morgan Cattle Company</a>
+
+<a href="https://dtdb.co/en/decklist/452/starting-deck-the-sloane-gang">The Sloan Gang</a>
+</td>
+</tr>
+</table>
+
+
+
+:: StoryScript [script]
+window.story.state.constants = {};
+window.story.state.constants.AUTOMATON_DECISIONS = 'Automaton Decisions';
+
+window.story.state.constants.GAMBLIN = 'Gamblin\'';
+window.story.state.constants.NOON = 'Noon';
+window.story.state.constants.SHOOTOUT = 'Shootout';
+window.story.state.constants.SHOOTOUT_RESOLUTION = 'Shootout Resolution';
+window.story.state.constants.SUNDOWN = 'Sundown';
+
+window.story.state.constants.GUNFIGHTER = 'GunFighter';
+window.story.state.constants.PULL = 'Pull';
+window.story.state.constants.PULL_STEP_2 = 'Pull Step 2';
+window.story.state.constants.PULL_STEP_3 = 'Pull Step 3';
+window.story.state.constants.PULL_STEP_4 = 'Pull Step 4';
+
+window.story.state.constants.SPADES = 'Spades';
+window.story.state.constants.HEARTS = 'Hearts';
+window.story.state.constants.CLUBS = 'Clubs';
+window.story.state.constants.DIAMONDS = 'Diamonds';
+window.story.state.constants.JOKER = 'Joker';
+
+window.story.state.constants.EFFECT_PRIORITES = 'Effect Priorties';
+window.story.state.constants.PROGRAMMED_REFLEXES = 'Programmed Reflexes';
+window.story.state.constants.TARGET_PRIORITIES = 'Target Priorities';
+window.story.state.constants.NON_UNIQUE_CARDS = 'Non-Unique Cards';
+window.story.state.constants.SHOOTOUT_HANDS = 'Shootout Hands';
+
+$(window).on('sm.passage.shown', function (e, data)
+{
+  	//So that the back arrows can be used to return to previous pages
+    window.story.checkpoint(data.passage.name);
+  	//Moves back to the top of the new passage.  Passage transitions were not doing this by default.
+  	$('html, body').animate({ scrollTop: 0 }, 'fast');
+});
+
+:: StoryStylesheet [stylesheet]
+body {background-color: #FCF5E5}
+
+.transparent {
+  border: 0px solid transparent;
+}
+
+table {
+  width:100%;
+  font-size:12pt;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+td {
+  vertical-align: top;
+}
+
+.large {
+  font-size: 24pt
+}
+
+.small {
+  font-size: 12pt
+}
+
+.red {
+  color: red
+}
+
+.grey {
+  color: grey
+}

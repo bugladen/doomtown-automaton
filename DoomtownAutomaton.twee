@@ -12,6 +12,10 @@ Doomtown Automaton
 }
 
 
+:: $\{phaseName\} {"position":"1700,1225","size":"100,100"}
+
+
+
 :: Automaton Decisions {"position":"575,225","size":"100,100"}
 <%
    s.Page =  s.constants.AUTOMATON_DECISIONS
@@ -67,10 +71,18 @@ Other factors to generally consider:
 <li><span.grey>The card that comes first alphabetically</span></li>
 
 
-:: Contributors {"position":"150,150","size":"100,100"}
+:: Change Log {"position":"200,150","size":"100,100"}
 <a href="javascript: window.history.back();"><<</a>
 
-## Contributors to this project:
+### Change Log
+
+<span.small>2024.03.23 Official Release</span>
+
+
+:: Contributors {"position":"75,150","size":"100,100"}
+<a href="javascript: window.history.back();"><<</a>
+
+### Project Contributors
 
 Edward Mittelstedt
 
@@ -165,11 +177,11 @@ This is the first and only official Automaton archtype released by Pine Box Ente
 
 This archetype was designed to get the Automaton into your face.  Dudes will aggressively try to control your Deeds and will chase your Dudes down to issue Call-Outs.
 
-Here are some [[Gunfighter Archetype Deck Lists->Gunfighter Deck Lists]] you can use to build your Automaton.
+[[Here->Gunfighter Deck Lists]] are decks you can use to build your Automaton.
 
-Here are some [[Official Starter Decks->Official Starter Decks]] you can use as building blocks to play against this Automaton.
+ [[Here->Starter Decks]] are starter decks you can use as building blocks to play against Automatons.
 
-When ready, proceed to the [[Gamblin' Phase]].
+When your play area is set up and you are ready, proceed to the [[Gamblin' Phase]].
 
 <%= window.story.render('Footer Block') %>
 
@@ -243,7 +255,11 @@ When placing Bounties on Opposing Dudes, choose In Order:
 
 <%= window.story.render('Phase Block') %>
 
+<% if (s.jokerPulled) { %>
+## Joker Rampage! &clubs;  Clubs
+<% } else { %>
 ## &clubs;  Clubs Pulled
+<% } %>
 ### Step 1
 
 Call out a Dude. 
@@ -270,16 +286,19 @@ If Moving, use the following criteria to choose target Dude to move to:
 
 If Calling Out, use [[Target Priorities->Gunfighter - Target Priorities]] to select opposing mark and to select a leader. 
 
-<% if (s.jokerPulled != null) { %>
-[[Joker Rampage! - Proceed to Step 2->Gunfighter - Clubs Step 2]]
-<% } else { %>
 Did this result in a Dude being called out or moving? 
 <ul>
+<% if (s.jokerPulled) { %>
+<% returnPrompt = 'Yes, a Dude moved. <b>Ace the Joker</b> and return to the'; %>
+<%= window.story.render('Return to Phase Block') %>
+<li>[[Yes, this started a Shootout. <b>Ace the Joker</b> and Go to the Shootout Phase->Shootout Phase]]</li>
+<li>[[No, rampage  to Step 2->Gunfighter - Clubs Step 2]]</li>
+<% } else { %>
 <li>[[Yes, a Dude moved - Go back to Noon Phase->Noon Phase]]</li>
-<li>[[Yes, this started a Shootout - Go to Shooutout Phase->Shootout Phase]]</li>
+<li>[[Yes, this started a Shootout - Go to the Shootout Phase->Shootout Phase]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Clubs Try Spades Step 1]]</li>
-</ul>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
@@ -315,7 +334,11 @@ Did this result in a Dude being called out or moving?
 
 <%= window.story.render('Phase Block') %>
 
+<% if (s.jokerPulled) { %>
+## Joker Rampage! <span.red>&diams;</span> Diamonds
+<% } else { %>
 ## <span.red>&diams;</span> Diamonds Pulled
+<% } %>
 ### Step 1
 
 Move a Dude to a Deed OWNED by the Automaton.
@@ -346,15 +369,16 @@ Move this Dude to a Deed owned by the Automaton.  Use the following criteria to 
 <%= window.story.render('Automaton Decisions - Include') %>
 </ol>
 
-<% if (s.jokerPulled != null) { %>
-[[Joker Rampage! - Proceed to Step 2->Gunfighter - Diamonds Step 2]]
-<% } else { %>
 Did a Dude move to a Deed owned by the Automata? 
 <ul>
+<% if (s.jokerPulled) { %>
+<li>[[Yes, rampage to Clubs Step 1->Gunfighter - Clubs Step 1]]</li>
+<li>[[No, rampage  to Step 2->Gunfighter - Diamonds Step 2]]</li>
+<% } else { %>
 <li>[[Yes, back to Noon Phase->Noon Phase]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Diamonds Try Spades Step 1]]</li>
-</ul>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
@@ -380,6 +404,38 @@ Did a Dude move to a Deed owned by the Automata?
 
 <%= window.story.render('Gunfighter - Spades Step 1') %>
 
+
+
+
+:: Gunfighter - Display Suit Block {"position":"1575,1250","size":"100,100"}
+<% 
+	suit = '';
+	switch (s.actualPull)
+    {
+    	case s.constants.HEARTS:
+	  		suit = '<span.red>&hearts;</span> Hearts';
+            break;
+        
+    	case s.constants.DIAMONDS:
+	  		suit = '<span.red>&diams;</span> Diamonds';
+            break;
+
+		case s.constants.CLUBS:
+	  		suit = '&clubs; Clubs';
+            break;
+
+		case s.constants.SPADES:
+	  		suit = '&spades; Spades';
+            break;
+    }
+
+	displaySuit = suit + ' Pulled';
+	if (s.jokerPulled)
+    {
+    	displaySuit = 'Joker Rampage!<br>' + suit;
+    }
+%>
+## <%= displaySuit %>
 
 
 
@@ -441,7 +497,11 @@ When choosing a Target for Good and Spells use the following order:
 
 <%= window.story.render('Phase Block') %>
 
+<% if (s.jokerPulled) { %>
+## Joker Rampage! <span.red>&hearts;</span>Hearts
+<% } else { %>
 ## <span.red>&hearts;</span> Hearts Pulled
+<% } %>
 ### Step 1
 
 Move a Dude to a deed NOT OWNED by the Automaton.
@@ -469,15 +529,16 @@ Move the Dude to a deed NOT owned by the Automaton.  Use the following criteria 
 
 Boot the Dude as normal if the move requires it.
 
-<% if (s.jokerPulled != null) { %>
-[[Joker Rampage! - Proceed to Step 2->Gunfighter - Hearts Step 2]]
-<% } else { %>
 Did this result in a Dude moving? 
 <ul>
+<% if (s.jokerPulled) { %>
+<li>[[Yes, rampage to Spades Step 1->Gunfighter - Spades Step 1]]</li>
+<li>[[No, rampage  to Step 2->Gunfighter - Hearts Step 2]]</li>
+<% } else { %>
 <li>[[Yes, back to Noon Phase->Noon Phase]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Hearts Try Spades Step 1]]</li>
-</ul>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
@@ -498,12 +559,61 @@ Did this result in a Dude moving?
 
 <%= window.story.render('Phase Block') %>
 
+<% if (s.jokerPulled) { %>
+## Joker Rampage! &spades; Spades
+<% } else { %>
 ## &spades;, Spades Step 1
 ### (<span.red>&hearts;</span> Hearts Actually Pulled)
+<% } %>
 
 <%= window.story.render('Gunfighter - Spades Step 1') %>
 
 
+
+
+:: Gunfighter - Joker Next Step Block {"position":"1575,1100","size":"100,100"}
+<%
+	switch(s.actualPull)
+    {
+    	case s.constants.HEARTS:
+        	if (s.Phase == s.constants.NOON) 
+	  			link = '[[Yes, rampage to Spades Step 1->Gunfighter - Hearts Try Spades Step 1]]';
+            else
+	  			link = '[[Yes, rampage to Spades Step 2->Gunfighter - Spades Step 2]]';
+            break;
+    	case s.constants.SPADES:
+        	if (s.Phase == s.constants.NOON) 
+		  		link = '[[Yes, rampage to Diamonds Step 1->Gunfighter - Diamonds Step 1]]';
+			else                
+		  		link = '[[Yes, rampage to Diamonds Step 2->Gunfighter - Diamonds Step 2]]';
+            break;
+    	case s.constants.DIAMONDS:
+        	if (s.Phase == s.constants.NOON) 
+		  		link = '[[Yes, rampage to Clubs Step 1->Gunfighter - Clubs Step 1]]';
+            else
+		  		link = '[[Yes, rampage to Clubs Step 2->Gunfighter - Clubs Step 2]]';
+            break;
+    	case s.constants.CLUBS:
+            let phaseName = '';
+        	switch (s.Phase)
+            {
+            	case s.constants.GAMBLIN:
+                    phaseName = "Gamblin' Phase";
+                    break;
+            	case s.constants.NOON:
+                    phaseName = 'Noon Phase';
+                    break;
+            	case s.constants.SHOOTOUT:
+                    phaseName = 'Shootout Phase';
+                    break;
+            	case s.constants.SHOOTOUT_RESOLUTION:
+                    phaseName = 'Shootout Resolution';
+                    break;
+			}
+            link = `[[Yes, <b>Ace the Joker</b> and go back to the ${phaseName}->${phaseName}]]`;
+    }    
+%>
+<li><%= link %></li>
 
 
 :: Gunfighter - Joker Pulled {"position":"1175,625","size":"100,100"}
@@ -516,7 +626,7 @@ Did this result in a Dude moving?
 
 ## Joker Pulled
 
-The Joker shakes up the town!  You will perform <i>every</i> action of <b>each</b> suit below, in order. 
+The Joker shakes up the town!  You will perform the steps of <b>each</b> suit below, in order. 
 <ol>
 <li><span.large.red>&hearts;</span> Hearts</li>
 <li><span.large>&spades;</span> Spades</li>
@@ -524,9 +634,11 @@ The Joker shakes up the town!  You will perform <i>every</i> action of <b>each</
 <li><span.large>&clubs;</span> Clubs</li>
 </ol>
 
+<% if (s.Phase == s.constants.NOON) { %>
 Note: If during a Shootout occurs during any of these actions, the Joker stops it's rampage.
+<% } %>
 
-When done, Ace the Joker.
+When done, <b>Ace the Joker</b>.
 
 Start the Rampage!  
 <% if (s.Phase == s.constants.NOON) { %>
@@ -827,7 +939,7 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 
 
 
-:: Gunfighter - Pull Step 3 {"position":"950,925","size":"100,100"}
+:: Gunfighter - Pull Step 3 {"position":"1300,1225","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_3
 
@@ -835,34 +947,12 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 %>
 
 <%= window.story.render('Phase Block') %>
-
-<% 
-	switch (s.actualPull)
-    {
-    	case s.constants.HEARTS:
-	  		suit = '<span.red>&hearts;</span> Hearts';
-            break;
-        
-    	case s.constants.DIAMONDS:
-	  		suit = '<span.red>&diams;</span> Diamonds';
-            break;
-
-		case s.constants.CLUBS:
-	  		suit = '&clubs; Clubs';
-            break;
-
-		case s.constants.SPADES:
-	  		suit = '&spades; Spades';
-            break;
-    }
-%>
-
-## <%= suit %> Pulled
+<%= window.story.render('Gunfighter - Display Suit Block') %>
 ### Step 3
 
 #### Use An Ability
 <% if (s.jokerPulled == null) { %>
-If no card was played, use an ability on a card. 
+If no card was played, use an ability on a card whose cost can be paid. 
 <% } %>
 
 <%
@@ -879,23 +969,24 @@ If several cards of the same type have an applicable ability, the rules listed u
 
 If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on the pull.
 
-<% if (s.jokerPulled != null) { %>
-[[Joker Rampage! - Proceed to Step 4->Gunfighter - Pull Step 4]]
-<% } else { %>
 Was an ability on a card used this way?
 <ul>
+<% if (s.jokerPulled) { %>
+<%= window.story.render('Gunfighter - Joker Next Step Block') %>
+<li>[[No, rampage to Step 4->Gunfighter - Pull Step 4]]</li>
+<% } else { %>
 <% returnPrompt = 'Yes, back to '; %>
 <%= window.story.render('Return to Phase Block') %>
 <li>[[No, proceed to Step 4->Gunfighter - Pull Step 4]]</li>
-</ul>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
 
 
 
-:: Gunfighter - Pull Step 4 {"position":"950,1050","size":"100,100"}
+:: Gunfighter - Pull Step 4 {"position":"1300,1350","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_4
 
@@ -903,80 +994,55 @@ Was an ability on a card used this way?
 %>
 
 <%= window.story.render('Phase Block') %>
-
-<% 
-	switch (s.actualPull)
-    {
-    	case s.constants.HEARTS:
-	  		suit = '<span.red>&hearts;</span> Hearts';
-            break;
-        
-    	case s.constants.DIAMONDS:
-	  		suit = '<span.red>&diams;</span> Diamonds';
-            break;
-
-		case s.constants.CLUBS:
-	  		suit = '&clubs; Clubs';
-            break;
-
-		case s.constants.SPADES:
-	  		suit = '&spades; Spades';
-            break;
-    }
-%>
-
-## <%= suit %> Pulled
+<%= window.story.render('Gunfighter - Display Suit Block') %>
 ### Step 4
 
 #### Recompense
 
  If no cards were played and no ability used, the Automaton gains 1 ghost rock.
  
-<% if (s.jokerPulled != null) { %>
+<%  // If not noon, we have to skip ALLLL the Step 1s
+	if (s.jokerPulled) { %>
 	<% if (s.actualPull == s.constants.HEARTS) { %>
-
-		<% if (s.Phase == s.constants.NOON) { %>
-        Joker Rampage! Proceed to <span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 1]]
+		<% if (s.Phase == s.constants.NOON) {
+          // Prevents the Spades script from thinking that this is coming from a non-Spades Step 1
+          // i.e. a normal pull that did not move the Dude, so try Spades.
+          s.actualPull = null 
+        %>
+        Rampage to <span.large>&spades;</span> [[Spades Step 1->Gunfighter - Spades Step 1]]
         <% } else { %>
-        Joker Rampage! Proceed to <span.large>&spades;</span> [[Spades->Gunfighter - Spades Step 2]]
+        Rampage to <span.large>&spades;</span> [[Spades Step 2->Gunfighter - Spades Step 2]]
         <% } %>
-        
 	<% } %>
 
 	<% if (s.actualPull == s.constants.SPADES) { %>
-
 		<% if (s.Phase == s.constants.NOON) { %>
-        Joker Rampage! Proceed to <span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 1]]
+        Rampage to <span.large.red>&diams;</span> [[Diamonds Step 1->Gunfighter - Diamonds Step 1]]
         <% } else { %>
-        Joker Rampage! Proceed to <span.large.red>&diams;</span> [[Diamonds->Gunfighter - Diamonds Step 2]]
+        Rampage to <span.large.red>&diams;</span> [[Diamonds Step 2->Gunfighter - Diamonds Step 2]]
         <% } %>
-
 	<% } %>
     
 	<% if (s.actualPull == s.constants.DIAMONDS) { %>
-
 		<% if (s.Phase == s.constants.NOON) { %>
-        Joker Rampage! Proceed to <span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 1]]
+        Rampage to <span.large>&clubs;</span> [[Clubs Step 1->Gunfighter - Clubs Step 1]]
         <% } else { %>
-        Joker Rampage! Proceed to <span.large>&clubs;</span> [[Clubs->Gunfighter - Clubs Step 2]]
+        Rampage to <span.large>&clubs;</span> [[Clubs Step 2->Gunfighter - Clubs Step 2]]
         <% } %>
-        
 	<% } %>
 
 	<% if (s.actualPull == s.constants.CLUBS) { %>
-    End of Joker Rampage! 
-    <b>Ace the Joker card.</b>
-    
-    <% returnPrompt = 'Return to the'; %>
-    <%= window.story.render('Return to Phase Block') %>
+        End of Joker Rampage! 
+        <b>Ace the Joker card.</b>
+
+        <% returnPrompt = 'Return to the'; %>
+        <%= window.story.render('Return to Phase Block') %>
 	<% } %>
-    
-    <% s.actualPull = null %>
 
 <% } else { %>
 
-<% returnPrompt = 'Return to the'; %>
-<%= window.story.render('Return to Phase Block') %>
+    <% returnPrompt = 'Return to the'; %>
+    <%= window.story.render('Return to Phase Block') %>
 
 <% } %>
 
@@ -1006,7 +1072,7 @@ When choosing a target for a Pull, use the following criteria in order:
 
 
 
-:: Gunfighter - Spades Step 1 {"position":"850,625","size":"100,100"}
+:: Gunfighter - Spades Step 1 {"position":"900,800","size":"100,100"}
 <%
    s.Page =  s.constants.SPADES
 %>
@@ -1014,8 +1080,12 @@ When choosing a target for a Pull, use the following criteria in order:
 <% if (s.actualPull == null) { %>
 <%= window.story.render('Phase Block') %>
 
-## &spades; Spades Pulled
-### Step 1
+  <% if (s.jokerPulled) { %>
+  ## Joker Rampage! &spades; Spades
+  <% } else { %>
+  ## &spades; Spades Pulled
+  <% } %>
+  ### Step 1
 <% } %>
 
 Move a dude not at an opposing deed (but can be at own Deed) to the Town Square.
@@ -1033,27 +1103,28 @@ Use the following criteria to choose the Dude:
 Note: Do not move a Dude if moving would cause the Automaton to lose at Sunset.
 <span.small>See [[Automaton Decisions<-Automaton Decisions, Movin']]</span>
 
-<% if (s.jokerPulled != null) { %>
-<li>[[Joker Rampage! - Proceed to Step 2->Gunfighter - Spades Step 2]]</li>
-<% } else { %>
 Did this result in a Dude moving? 
-<ul>
-<% returnPrompt = 'Yes, back to '; %>
-<%= window.story.render('Return to Phase Block') %>
-<% if (s.actualPull != null) { %>
-<li>[[No, take me to Step 2->Gunfighter - Step 2]] </li>
-<% } else { %>
-<li>[[No, take me to Step 2->Gunfighter - Spades Step 2]] </li>
-<% } %>
 
-</ul>
+<ul>
+<% if (s.jokerPulled) { %>
+<li>[[Yes, rampage to Diamonds Step 1->Gunfighter - Diamonds Step 1]]</li>
+<li>[[No, rampage  to Step 2->Gunfighter - Spades Step 2]]</li>
+<% } else { %>
+  <% returnPrompt = 'Yes, back to '; %>
+  <%= window.story.render('Return to Phase Block') %>
+  <% if (s.actualPull) { %>
+  <li>[[No, take me to Step 2->Gunfighter - Step 2]] </li>
+  <% } else { %>
+  <li>[[No, take me to Step 2->Gunfighter - Spades Step 2]] </li>
+  <% } %>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
 
 
-:: Gunfighter - Spades Step 2 {"position":"950,625","size":"100,100"}
+:: Gunfighter - Spades Step 2 {"position":"1000,800","size":"100,100"}
 <%
    s.actualPull  =  s.constants.SPADES
 %>
@@ -1061,37 +1132,13 @@ Did this result in a Dude moving?
 <%= window.story.render('Gunfighter - Step 2') %>
 
 
-:: Gunfighter - Step 2 {"position":"950,800","size":"100,100"}
+:: Gunfighter - Step 2 {"position":"1300,1100","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_2;   
-   
-   let suit = '';
 %>
 
 <%= window.story.render('Phase Block') %>
-
-<% 
-	switch (s.actualPull)
-    {
-    	case s.constants.HEARTS:
-	  		suit = '<span.red>&hearts;</span> Hearts';
-            break;
-        
-    	case s.constants.DIAMONDS:
-	  		suit = '<span.red>&diams;</span> Diamonds';
-            break;
-
-		case s.constants.CLUBS:
-	  		suit = '&clubs; Clubs';
-            break;
-
-		case s.constants.SPADES:
-	  		suit = '&spades; Spades';
-            break;
-    }
-%>
-
-## <%= suit %> Pulled
+<%= window.story.render('Gunfighter - Display Suit Block') %>
 ### Step 2
 
 #### Play a Card
@@ -1105,20 +1152,21 @@ Did this result in a Dude moving?
     	phase = 'Resolution';
 %>
 
-If the Automaton has one or more playable <%= suit %> <b><%= phase %></b> cards in-hand, play one. 
+If the Automaton has one or more playable <%= suit %> <b><%= phase %></b> cards in-hand, play one whose cost can be paid. 
 
 Select a card with fewest <%= suit %> and value in play, then, if there are several options, the right-most one.
 
-<% if (s.jokerPulled != null) { %>
-[[Joker Rampage! - Proceed to Step 3->Gunfighter - Pull Step 3]]
-<% } else { %>
 Was a card played this way?
 <ul>
+<% if (s.jokerPulled) { %>
+<%= window.story.render('Gunfighter - Joker Next Step Block') %>
+<li>[[No, rampage to Step 3->Gunfighter - Pull Step 3]]</li>
+<% } else { %>
 <% returnPrompt = 'Yes, back to '; %>
 <%= window.story.render('Return to Phase Block') %>
 <li>[[No, proceed to Step 3->Gunfighter - Pull Step 3]]</li>
-</ul>
 <% } %>
+</ul>
 
 <%= window.story.render('Footer Block') %>
 
@@ -1246,7 +1294,7 @@ Pulls
 :: Gunfighter Deck Lists {"position":"75,400","size":"100,100"}
 <%= window.story.render('Phase Block') %>
 
-## Gunfighter Archetype Deck Lists
+### Gunfighter Archetype Deck Lists
 
 <table>
 <tr>
@@ -1341,11 +1389,9 @@ If there are multiple copies of the same card in play that are eligible targets,
 
 Make a <span.large>[[PULL->Pull]]</span> every time it is the Automaton's turn to act. 
 
+If a Shootout starts, proceed to the [[Shootout Phase]].
+
 <%= window.story.render('Footer Block') %>
-
-
-
-:: Official Starter Decks {"position":"200,425","size":"100,100"}
 
 
 
@@ -1543,19 +1589,23 @@ During the Resolution Phase, make a <span.large>[[PULL->Pull]]</span> every time
 
 
 :: Start {"position":"75,25","size":"100,100"}
-## Doomtown Automaton
+## Doomtown 
+### Automaton Helper
 
-Welcome to the Doomtown Automaton helper.   It assists with the step-by-step flow of playing against a Doomtown Automaton. It is formatted to be used from a small-screen device.
+Welcome to the Doomtown Automaton helper.   The purpose of the helper is to assist with the step-by-step flow of playing against a Doomtown Automaton. 
+
+It is formatted to be used from a small-screen device.
 
 Please choose from the following available Archetypes:
 
 [[Gunfighter]]
 
-<span.small>[[Starter Decks]] | [[Contributors]]</span>
+<span.small>[[Contributors]] | [[Change Log]]</span>
+<br><span.small>v2024.03.23.2</span>
 
 
-:: Starter Decks {"position":"25,150","size":"100,100"}
-<a href="javascript: window.history.back();"><<</a>
+:: Starter Decks {"position":"425,350","size":"100,100"}
+<%= window.story.render('Phase Block') %>
 
 ## Starter Decks
 

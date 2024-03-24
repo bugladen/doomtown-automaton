@@ -12,10 +12,6 @@ Doomtown Automaton
 }
 
 
-:: $\{phaseName\} {"position":"1700,1225","size":"100,100"}
-
-
-
 :: Automaton Decisions {"position":"575,225","size":"100,100"}
 <%
    s.Page =  s.constants.AUTOMATON_DECISIONS
@@ -65,7 +61,6 @@ Other factors to generally consider:
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Automaton Decisions - Include {"position":"575,350","size":"100,100"}
 <li><span.grey>The card with the highest value</span></li>
 <li><span.grey>The card that comes first alphabetically</span></li>
@@ -76,7 +71,18 @@ Other factors to generally consider:
 
 ### Change Log
 
-<span.small>2024.03.23 Official Release</span>
+<table.transparent>
+<tr>
+<td.small.transparent>2024.03.24</td>
+<td.small.transparent>Fixes to the <i>Gunfighter - Display Suit Block</i> passage to remove ghost passage and bad link.<br>Remove contributor passage for now.</td>
+</tr>
+
+<tr>
+<td.small.transparent>2024.03.23</td>
+<td.small.transparent>Official Release</td>
+</tr>
+
+</table>
 
 
 :: Contributors {"position":"75,150","size":"100,100"}
@@ -142,7 +148,6 @@ Edward Mittelstedt
 <span.small>Archetype: <%= s.Archetype %></span>
 
 
-
 :: Gamblin' Phase {"position":"900,25","size":"100,100"}
 <%
   s.Phase = s.constants.GAMBLIN;
@@ -160,7 +165,6 @@ On Resolution, make a <span.large>[[PULL->Pull]]</span> for every Cheatin' oppon
 When done, proceed to the [[Noon Phase]].
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter {"position":"75,300","size":"100,100"}
@@ -186,7 +190,6 @@ When your play area is set up and you are ready, proceed to the [[Gamblin' Phase
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Bonuses affecting OPPOSING Dudes {"position":"175,825","size":"100,100"}
 <%
    s.Page = ''
@@ -205,7 +208,6 @@ When choosing an Opposing Dude as a target for a bonus, choose In order:
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Bonuses affecting OWN dudes {"position":"50,825","size":"100,100"}
@@ -227,7 +229,6 @@ When choosing Own Dude as a target for a bonus, choose In order:
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Bounties {"position":"300,825","size":"100,100"}
 <%
    s.Page = ''
@@ -245,7 +246,6 @@ When placing Bounties on Opposing Dudes, choose In Order:
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Clubs Step 1 {"position":"1650,800","size":"100,100"}
@@ -304,7 +304,6 @@ Did this result in a Dude being called out or moving?
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Clubs Step 2 {"position":"1450,900","size":"100,100"}
 <%
    s.actualPull  =  s.constants.CLUBS
@@ -324,8 +323,6 @@ Did this result in a Dude being called out or moving?
 ### (&clubs; Clubs Actually Pulled)
 
 <%= window.story.render('Gunfighter - Spades Step 1') %>
-
-
 
 
 :: Gunfighter - Diamonds Step 1 {"position":"1400,800","size":"100,100"}
@@ -385,7 +382,6 @@ Did a Dude move to a Deed owned by the Automata?
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Diamonds Step 2 {"position":"1700,900","size":"100,100"}
 <%
    s.actualPull  =  s.constants.DIAMONDS
@@ -405,8 +401,6 @@ Did a Dude move to a Deed owned by the Automata?
 ### (<span.red>&diams;</span> Diamonds Actually Pulled)
 
 <%= window.story.render('Gunfighter - Spades Step 1') %>
-
-
 
 
 :: Gunfighter - Display Suit Block {"position":"1575,1250","size":"100,100"}
@@ -440,7 +434,6 @@ Did a Dude move to a Deed owned by the Automata?
 ## <%= displaySuit %>
 
 
-
 :: Gunfighter - Effect Priorities {"position":"700,625","size":"100,100"}
 <%
    s.Page = s.constants.EFFECT_PRIORITIES;
@@ -468,7 +461,6 @@ OWN means cards that the Automaton owns.
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Goods and Spells {"position":"675,825","size":"100,100"}
 <%
    s.Page = ''
@@ -489,7 +481,6 @@ When choosing a Target for Good and Spells use the following order:
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Hearts Step 1 {"position":"1150,800","size":"100,100"}
@@ -546,7 +537,6 @@ Did this result in a Dude moving?
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Hearts Step 2 {"position":"1200,900","size":"100,100"}
 <%
    s.actualPull  =  s.constants.HEARTS
@@ -572,9 +562,7 @@ Did this result in a Dude moving?
 <%= window.story.render('Gunfighter - Spades Step 1') %>
 
 
-
-
-:: Gunfighter - Joker Next Step Block {"position":"1575,1100","size":"100,100"}
+:: Gunfighter - Joker Next Step Block {"position":"1675,1100","size":"100,100"}
 <%
 	switch(s.actualPull)
     {
@@ -597,23 +585,22 @@ Did this result in a Dude moving?
 		  		link = '[[Yes, rampage to Clubs Step 2->Gunfighter - Clubs Step 2]]';
             break;
     	case s.constants.CLUBS:
-            let phaseName = '';
         	switch (s.Phase)
             {
             	case s.constants.GAMBLIN:
-                    phaseName = "Gamblin' Phase";
+            		link = "[[Yes, <b>Ace the Joker</b> and go back to the Gamblin' Phase->Gamblin' Phase]]";
                     break;
             	case s.constants.NOON:
-                    phaseName = 'Noon Phase';
+		            link = '[[Yes, <b>Ace the Joker</b> and go back to the Noon Phase->Noon Phase]]';
                     break;
             	case s.constants.SHOOTOUT:
-                    phaseName = 'Shootout Phase';
+            		link = '[[Yes, <b>Ace the Joker</b> and go back to the Shootout Phase->Shootout Phase]]';
                     break;
             	case s.constants.SHOOTOUT_RESOLUTION:
                     phaseName = 'Shootout Resolution';
+		            link = '[[Yes, <b>Ace the Joker</b> and go back to the Shootout Resolution->Shootout Resolution]]';
                     break;
 			}
-            link = `[[Yes, <b>Ace the Joker</b> and go back to the ${phaseName}->${phaseName}]]`;
     }    
 %>
 <li><%= link %></li>
@@ -675,7 +662,6 @@ When choosing Opposing Attachments, Booted or Discarded as a Cost or by Effect, 
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - OPPOSING Dude Leaving Play or Control {"position":"550,825","size":"100,100"}
 <%
    s.Page = ''
@@ -696,7 +682,6 @@ If an Opposing Dude leaves play or Opponent loses control of them, choose in ord
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - OPPOSING Mark {"position":"300,1000","size":"100,100"}
@@ -721,7 +706,6 @@ When choosing Opposing Mark, use the following order:
  <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - OWN Attachments, Booted/Discarded as a Cost or by Effect {"position":"50,1000","size":"100,100"}
 <%
    s.Page = ''
@@ -744,7 +728,6 @@ When choosing Automaton's OWN Attachments, Booted or Discarded as a Cost or by E
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - OWN Dude Leaving Play or Control {"position":"425,825","size":"100,100"}
 <%
    s.Page = ''
@@ -764,7 +747,6 @@ If a Dude the Automaton owns leaves play or it loses control of them, choose the
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Penalties, affecting OPPOSING Dudes {"position":"425,1000","size":"100,100"}
@@ -789,7 +771,6 @@ When choosing an Opposing Dude for a penalty, use the following order:
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Penalties, affecting OWN Dudes {"position":"550,1000","size":"100,100"}
 <%
    s.Page = ''
@@ -810,7 +791,6 @@ When choosing Own Dude for a penalty, use the following order:
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Posses {"position":"800,1000","size":"100,100"}
@@ -835,7 +815,6 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 </ol>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Programmed Reflexes {"position":"100,625","size":"100,100"}
@@ -941,7 +920,6 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Pull Step 3 {"position":"1300,1225","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_3
@@ -985,8 +963,6 @@ Was an ability on a card used this way?
 </ul>
 
 <%= window.story.render('Footer Block') %>
-
-
 
 
 :: Gunfighter - Pull Step 4 {"position":"1300,1350","size":"100,100"}
@@ -1074,7 +1050,6 @@ When choosing a target for a Pull, use the following criteria in order:
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter - Spades Step 1 {"position":"900,800","size":"100,100"}
 <%
    s.Page =  s.constants.SPADES
@@ -1125,7 +1100,6 @@ Did this result in a Dude moving?
 </ul>
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Gunfighter - Spades Step 2 {"position":"1000,800","size":"100,100"}
@@ -1294,7 +1268,6 @@ Pulls
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Gunfighter Deck Lists {"position":"75,400","size":"100,100"}
 <%= window.story.render('Phase Block') %>
 
@@ -1380,7 +1353,6 @@ If there are multiple copies of the same card in play that are eligible targets,
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Noon Phase {"position":"1025,25","size":"100,100"}
 <%
   s.Phase = s.constants.NOON;
@@ -1396,7 +1368,6 @@ Make a <span.large>[[PULL->Pull]]</span> every time it is the Automaton's turn t
 If a Shootout starts, proceed to the [[Shootout Phase]].
 
 <%= window.story.render('Footer Block') %>
-
 
 
 :: Phase Block {"position":"400,25","size":"100,100"}
@@ -1424,7 +1395,6 @@ If a Shootout starts, proceed to the [[Shootout Phase]].
 </tr>
 
 </table>
-
 
 
 :: Pull {"position":"1075,200","size":"100,100"}
@@ -1499,7 +1469,6 @@ After the pull is resolved, discard cards from the right-side of the Hand Row un
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Return to Phase Block {"position":"1575,50","size":"100,100"}
 <% if (s.Phase == s.constants.GAMBLIN) {%>
 <li>[[<%=  returnPrompt %> Gamblin' Phase->Gamblin' Phase]]</li>
@@ -1516,7 +1485,6 @@ After the pull is resolved, discard cards from the right-side of the Hand Row un
 <% if (s.Phase == s.constants.SHOOTOUT_RESOLUTION) {%>
 <li>[[<%=  returnPrompt %> Shootout Resolution ->Shootout Resolution]]</li>
 <% } %>
-
 
 
 :: Shootout Hands {"position":"825,225","size":"100,100"}
@@ -1558,7 +1526,6 @@ When done, proceed to [[Shootout Resolution]].
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Shootout Phase {"position":"1150,25","size":"100,100"}
 <%
     s.Phase = s.constants.SHOOTOUT;
@@ -1576,7 +1543,6 @@ When done, [[Shootout Hands<-Choose Shooter and Make Shootout Hands]]
 <%= window.story.render('Footer Block') %>
 
 
-
 :: Shootout Resolution {"position":"1275,25","size":"100,100"}
 <%
   s.Phase = s.constants.SHOOTOUT_RESOLUTION;
@@ -1592,7 +1558,7 @@ During the Resolution Phase, make a <span.large>[[PULL->Pull]]</span> every time
 <%= window.story.render('Footer Block') %>
 
 
-:: Start {"position":"75,25","size":"100,100"}
+:: Start {"position":"175,25","size":"100,100"}
 ## Doomtown 
 ### Automaton Helper
 
@@ -1604,8 +1570,8 @@ Please choose from the following available Archetypes:
 
 [[Gunfighter]]
 
-<span.small>[[Contributors]] | [[Change Log]]</span>
-<br><span.small>v2024.03.23.3</span>
+<span.small>[[Change Log]]</span>
+<br><span.small>v2024.03.24</span>
 
 
 :: Starter Decks {"position":"425,350","size":"100,100"}
@@ -1646,7 +1612,6 @@ Below are lists of starters decks you can make using only the Core Set of the re
 </td>
 </tr>
 </table>
-
 
 
 :: StoryScript [script]
@@ -1715,7 +1680,7 @@ td {
 }
 
 .small {
-  font-size: 12pt
+  font-size: 11pt
 }
 
 .red {

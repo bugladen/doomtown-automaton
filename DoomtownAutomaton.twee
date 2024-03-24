@@ -74,7 +74,13 @@ Other factors to generally consider:
 <table.transparent>
 <tr>
 <td.small.transparent>2024.03.24</td>
-<td.small.transparent>Fixes to the <i>Gunfighter - Display Suit Block</i> passage to remove ghost passage and bad link.<br>Remove contributor passage for now.</td>
+<td.small.transparent>
+<ul>
+<li>Fixes to the <i>Gunfighter - Display Suit Block</i> passage to remove ghost passage and bad link.</li>
+<li>Remove contributor passage for now.</li>
+<li>Update <i>Gunfighter - Pull Step 3</i> "If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on" to link to appropriate Step 1 moves.</li>
+</ul>
+</td>
 </tr>
 
 <tr>
@@ -923,8 +929,6 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 :: Gunfighter - Pull Step 3 {"position":"1300,1225","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_3
-
-	suit = '';
 %>
 
 <%= window.story.render('Phase Block') %>
@@ -946,9 +950,28 @@ To choose a card start with <%= suit %>, then proceed through the following list
 
 &clubs; - <span.red>&diams;</span> - &spades; - <span.red>&hearts;</span> - Outfit - Legend.
 
-If several cards of the same type have an applicable ability, the rules listed under [[Effect Priorities->Gunfighter - Effect Priorities]]. 
+If several cards of the same type have an applicable ability, choose using the rules listed under [[Effect Priorities->Gunfighter - Effect Priorities]]. 
 
-If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on the pull.
+<%
+   moveLink = '';
+	switch (s.actualPull)
+    {
+    	case s.constants.HEARTS:
+            moveLink = '[[Hearts Step 1->Gunfighter - Hearts Step 1]]';
+            break;
+    	case s.constants.SPADES:
+            moveLink = '[[Spades Step 1->Gunfighter - Spades Step 1]]';
+            break;
+    	case s.constants.DIAMONDS:
+            moveLink = '[[Diamonds Step 1->Gunfighter - Diamonds Step 1]]';
+            break;
+    	case s.constants.CLUBS:
+            moveLink = '[[Clubs Step 1->Gunfighter - Clubs Step 1]]';
+            break;
+    }
+%>
+
+If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on <%= moveLink %>.
 
 Was an ability on a card used this way?
 <ul>
@@ -968,8 +991,6 @@ Was an ability on a card used this way?
 :: Gunfighter - Pull Step 4 {"position":"1300,1350","size":"100,100"}
 <%
    s.Page =  s.constants.PULL_STEP_4
-
-	let suit = '';
 %>
 
 <%= window.story.render('Phase Block') %>
@@ -1055,7 +1076,7 @@ When choosing a target for a Pull, use the following criteria in order:
    s.Page =  s.constants.SPADES
 %>
 
-<% if (s.actualPull == null) { %>
+<% if (s.actualPull == null || s.actualPull == s.constants.SPADES) { %>
 <%= window.story.render('Phase Block') %>
 
   <% if (s.jokerPulled) { %>
@@ -1571,7 +1592,7 @@ Please choose from the following available Archetypes:
 [[Gunfighter]]
 
 <span.small>[[Change Log]]</span>
-<br><span.small>v2024.03.24</span>
+<br><span.small>v2024.03.24.1</span>
 
 
 :: Starter Decks {"position":"425,350","size":"100,100"}

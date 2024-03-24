@@ -256,7 +256,8 @@ When placing Bounties on Opposing Dudes, choose In Order:
 <%= window.story.render('Phase Block') %>
 
 <% if (s.jokerPulled) { %>
-## Joker Rampage! &clubs;  Clubs
+## Joker Rampage!
+### &clubs;  Clubs
 <% } else { %>
 ## &clubs;  Clubs Pulled
 <% } %>
@@ -335,7 +336,8 @@ Did this result in a Dude being called out or moving?
 <%= window.story.render('Phase Block') %>
 
 <% if (s.jokerPulled) { %>
-## Joker Rampage! <span.red>&diams;</span> Diamonds
+## Joker Rampage!
+### <span.red>&diams;</span> Diamonds
 <% } else { %>
 ## <span.red>&diams;</span> Diamonds Pulled
 <% } %>
@@ -498,7 +500,8 @@ When choosing a Target for Good and Spells use the following order:
 <%= window.story.render('Phase Block') %>
 
 <% if (s.jokerPulled) { %>
-## Joker Rampage! <span.red>&hearts;</span>Hearts
+## Joker Rampage!
+### <span.red>&hearts;</span>Hearts
 <% } else { %>
 ## <span.red>&hearts;</span> Hearts Pulled
 <% } %>
@@ -943,7 +946,7 @@ When choosing a target for forming Posses as a leader, and choosing Dudes to joi
 <%
    s.Page =  s.constants.PULL_STEP_3
 
-	let suit = '';
+	suit = '';
 %>
 
 <%= window.story.render('Phase Block') %>
@@ -1081,7 +1084,8 @@ When choosing a target for a Pull, use the following criteria in order:
 <%= window.story.render('Phase Block') %>
 
   <% if (s.jokerPulled) { %>
-  ## Joker Rampage! &spades; Spades
+  ## Joker Rampage!
+  ### &spades; Spades
   <% } else { %>
   ## &spades; Spades Pulled
   <% } %>
@@ -1601,7 +1605,7 @@ Please choose from the following available Archetypes:
 [[Gunfighter]]
 
 <span.small>[[Contributors]] | [[Change Log]]</span>
-<br><span.small>v2024.03.23.2</span>
+<br><span.small>v2024.03.23.3</span>
 
 
 :: Starter Decks {"position":"425,350","size":"100,100"}

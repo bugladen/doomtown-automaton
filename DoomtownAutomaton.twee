@@ -72,14 +72,23 @@ Other factors to generally consider:
 ### Change Log
 
 <table.transparent>
+
+<tr>
+<td.small.transparent>2024.05.05</td>
+<td.small.transparent>Adding booting to Target Priorities->Penalties. Minor language fixes.</td>
+</tr>
+
+<tr>
+<td.small.transparent>2024.05.04</td>
+<td.small.transparent>Major flow fix.  Completion of a move or call-out in step 1 does NOT end the turn for the Automaton.  It proceeds to perform an action in one of  Steps 2-4.</td>
+</tr>
+
 <tr>
 <td.small.transparent>2024.03.24</td>
 <td.small.transparent>
-<ul>
 <li>Fixes to the <i>Gunfighter - Display Suit Block</i> passage to remove ghost passage and bad link.</li>
 <li>Remove contributor passage for now.</li>
 <li>Update <i>Gunfighter - Pull Step 3</i> "If one or more dudes are moved during Noon by this, choose the destination as for a High Noon play based on" to link to appropriate Step 1 moves.</li>
-</ul>
 </td>
 </tr>
 
@@ -183,7 +192,7 @@ When done, proceed to the [[Noon Phase]].
 
 ## Gunfighter Archetype
 
-This is the first and only official Automaton archtype released by Pine Box Entertainment.  
+This is the first and currrently only official Automaton archtype released by Pine Box Entertainment.  
 
 This archetype was designed to get the Automaton into your face.  Dudes will aggressively try to control your Deeds and will chase your Dudes down to issue Call-Outs.
 
@@ -301,10 +310,12 @@ Did this result in a Dude being called out or moving?
 <li>[[Yes, this started a Shootout. <b>Ace the Joker</b> and Go to the Shootout Phase->Shootout Phase]]</li>
 <li>[[No, rampage  to Step 2->Gunfighter - Clubs Step 2]]</li>
 <% } else { %>
-<li>[[Yes, a Dude moved - Go back to Noon Phase->Noon Phase]]</li>
+<li>[[Yes, take me to Step 2->Gunfighter - Clubs Step 2]]</li>
 <li>[[Yes, this started a Shootout - Go to the Shootout Phase->Shootout Phase]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Clubs Try Spades Step 1]]</li>
 <% } %>
+<% returnPrompt = 'Return to '; %>
+<%= window.story.render('Return to Phase Block') %>
 </ul>
 
 <%= window.story.render('Footer Block') %>
@@ -356,7 +367,7 @@ If a Dude can't be moved:
 <li>Without a loss of control points</li>
 <li>Without moving the last unbooted Dude in the town square</li>
 </ul>
-Move to the next step. 
+....then move to the next step. 
 
 If a Dude can be moved using using above restrictions, use the following criteria to choose <i>which</i> Dude to move:
 <ol>
@@ -380,9 +391,11 @@ Did a Dude move to a Deed owned by the Automata?
 <li>[[Yes, rampage to Clubs Step 1->Gunfighter - Clubs Step 1]]</li>
 <li>[[No, rampage  to Step 2->Gunfighter - Diamonds Step 2]]</li>
 <% } else { %>
-<li>[[Yes, back to Noon Phase->Noon Phase]]</li>
+<li>[[Yes, take me to Step 2->Gunfighter - Diamonds Step 2]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Diamonds Try Spades Step 1]]</li>
 <% } %>
+<% returnPrompt = 'Return to '; %>
+<%= window.story.render('Return to Phase Block') %>
 </ul>
 
 <%= window.story.render('Footer Block') %>
@@ -535,9 +548,11 @@ Did this result in a Dude moving?
 <li>[[Yes, rampage to Spades Step 1->Gunfighter - Spades Step 1]]</li>
 <li>[[No, rampage  to Step 2->Gunfighter - Hearts Step 2]]</li>
 <% } else { %>
-<li>[[Yes, back to Noon Phase->Noon Phase]]</li>
+<li>[[Yes, take me to Step 2->Gunfighter - Hearts Step 2]]</li>
 <li>[[No, now try Spades Step 1->Gunfighter - Hearts Try Spades Step 1]]</li>
 <% } %>
+<% returnPrompt = 'Return to '; %>
+<%= window.story.render('Return to Phase Block') %>
 </ul>
 
 <%= window.story.render('Footer Block') %>
@@ -1103,20 +1118,18 @@ Use the following criteria to choose the Dude:
 Note: Do not move a Dude if moving would cause the Automaton to lose at Sunset.
 <span.small>See [[Automaton Decisions<-Automaton Decisions, Movin']]</span>
 
-Did this result in a Dude moving? 
-
 <ul>
 <% if (s.jokerPulled) { %>
 <li>[[Yes, rampage to Diamonds Step 1->Gunfighter - Diamonds Step 1]]</li>
 <li>[[No, rampage  to Step 2->Gunfighter - Spades Step 2]]</li>
 <% } else { %>
-  <% returnPrompt = 'Yes, back to '; %>
-  <%= window.story.render('Return to Phase Block') %>
   <% if (s.actualPull) { %>
-  <li>[[No, take me to Step 2->Gunfighter - Step 2]] </li>
+  <li>[[Take me to Step 2->Gunfighter - Step 2]] </li>
   <% } else { %>
-  <li>[[No, take me to Step 2->Gunfighter - Spades Step 2]] </li>
+  <li>[[Take me to Step 2->Gunfighter - Spades Step 2]] </li>
   <% } %>
+  <% returnPrompt = 'Return to '; %>
+  <%= window.story.render('Return to Phase Block') %>
 <% } %>
 </ul>
 
@@ -1251,7 +1264,7 @@ Mark
 </tr>
 
 <tr>
-<td>Penalties</td>
+<td>Penalties&nbsp;/&nbsp;Booting</td>
 <td>
 <ul>
 <li>[[Gunfighter - Penalties, affecting OPPOSING Dudes<-Affecting OPPOSING Dudes]]</li>
@@ -1592,7 +1605,7 @@ Please choose from the following available Archetypes:
 [[Gunfighter]]
 
 <span.small>[[Change Log]]</span>
-<br><span.small>v2024.03.24.1</span>
+<br><span.small>v2024.05.05</span>
 
 
 :: Starter Decks {"position":"425,350","size":"100,100"}
@@ -1710,4 +1723,13 @@ td {
 
 .grey {
   color: grey
+}
+
+a {
+  	text-decoration-color: red;
+}
+
+a:hover {
+	color: red;
+  	text-decoration-color: red;
 }

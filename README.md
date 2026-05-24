@@ -9,7 +9,7 @@ The helper was written in [Twine 2](https://twinery.org/cookbook/) and formatted
 
 
 ## Access
-The helper can be accessed via browser [here](https://bit.ly/dt-automaton) to play Doomtown solo. 
+The helper can be accessed via browser [here](https://dtdb.co/automata/automata.html) to play Doomtown solo. 
 
 It is formatted for mobile devices and is compatible with the following versions of Doomtown:
 * Doomtown Reloaded
